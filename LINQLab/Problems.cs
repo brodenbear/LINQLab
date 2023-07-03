@@ -18,11 +18,11 @@ namespace LINQLab
         public void RunLINQQueries()
         {
             //// <><><><><><><><> R Actions (Read) <><><><><><><><><>
-            //RDemoOne();
-            //RProblemOne();
-            //RDemoTwo();
-            //RProblemTwo();
-            //RProblemThree();
+            RDemoOne();
+            RProblemOne();
+            RDemoTwo();
+            RProblemTwo();
+            RProblemThree();
             //RProblemFour();
             //RProblemFive();
 
@@ -68,6 +68,8 @@ namespace LINQLab
         private void RProblemOne()
         {
             // Print the COUNT of all the users from the User table.
+            var usercount = _context.Users.Count();
+            Console.WriteLine($"{usercount}");
 
         }
 
@@ -91,7 +93,12 @@ namespace LINQLab
         {
             // Write a LINQ query that gets each product whose price is less than or equal to $100.
             // Print the name and price of all products
-
+            var productsUnder100 = _context.Products.Where(p => p.Price <= 100);
+            Console.WriteLine("RProblemTwo: Products less than or equal to $100");
+            foreach (Product product in productsUnder100)
+            {
+                Console.WriteLine($"{product.Name} - ${product.Price}");
+            }
         }
 
         /*
@@ -109,7 +116,13 @@ namespace LINQLab
 
         public void RProblemThree()
         {
-            // Write a LINQ query that gets each product whose name that CONTAINS an "s".
+            // Write a LINQ query that gets each product whose name contains an "s".
+            var productsWithS = _context.Products.Where(product => product.Name.Contains("s"));
+            Console.WriteLine("RProblemThree: Products whose names contain an 's'");
+            foreach (Product product in productsWithS)
+            {
+                Console.WriteLine($"{product.Name} - ${product.Price}");
+            }
         }
         /*
             Expected Result:
@@ -329,6 +342,7 @@ namespace LINQLab
             // Delete all of the product relationships to the user with the email "oda@gmail.com" in the ShoppingCart table using LINQ.
             // HINT: Use a Loop
 
+
         }
 
         private void DProblemTwo()
@@ -373,4 +387,4 @@ namespace LINQLab
         }
 
     }
-//}
+}
