@@ -142,8 +142,14 @@ namespace LINQLab
         {
             // Write a LINQ query that gets all the users who registered BEFORE 2016.
             // Then print each user's email and registration date to the console.
-
+            var productsWithS = _context.Products.Where(product => product.Name.Contains("s"));
+            Console.WriteLine("RProblemThree: Products whose names contain an 's'");
+            foreach (Product product in productsWithS)
+            {
+                Console.WriteLine($"{product.Name} - ${product.Price}");
+            }
         }
+    
         /*
             Expected Result:
 
